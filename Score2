@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Score2 : MonoBehaviour
+{
+public int scoreCount1 = 0;
+public GameObject text1;
+public Text ScoreText;
+public GameObject winnerText;
+
+    // Start is called before the first frame update
+    void Start()	
+    {
+        text1.SetActive(false);
+	winnerText.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+	private void OnTriggerEnter2D(Collider2D coli) {
+		Debug.Log ("Score Player1: " + scoreCount1);
+		text1.SetActive(true);
+		AddScore();
+	}
+	
+	void AddScore() {
+		scoreCount1++;
+		ScoreText.text = scoreCount1.ToString();
+		if (scoreCount1 == 10) {
+			winnerText.SetActive(true);
+			Time.timeScale = 0;
+		}
+	}
+	
+	private void OnTriggerExit2D(Collider2D co) {
+		text1.SetActive(false);
+	}
+
+	//BELOW: collision code
+	//void OnCollisionEnter2D (Collision2D col) {
+		//if (col.gameObject.tag.Equals ("Player"))
+		//{
+			//scoreCount1++;
+			//Debug.Log ("Score Player1: " + scoreCount1);
+		//}
+	//}
+}
